@@ -8,19 +8,37 @@
  *   can lead to unexpected behaviors
  */
 
+import { error } from "console"
+import { expect } from "vitest"
+
 /**
  * @param {number} n
  * @return {boolean} true if n is bigger than 2
  */
 export function isBiggerThan2(n) {
-  // Write your code here
+  if(isNaN(n)){
+    throw new Error("Passed value is not a number");
+  }
+  if (n > 2)
+    return true
+  else if (0 < n < 2)
+   return false
+  console.log("test")
 }
 
 /**
  * @param {number} n
  * @param {number} m
- * @return {boolean} true if m is a multiple of n
+ * @return {boolean} true if n is a multiple of m
  */
 export function isMult(n, m) {
-  // Write your code here
+  // Type verifications
+  if(isNaN(n) || isNaN(m)){
+    throw new Error("Passed value is not a number");
+  }
+  const x = n % m
+  if (x === 0)
+    return true
+  else if (x !== 0)
+   return false
 }
