@@ -12,7 +12,11 @@ describe('Find and replace :', () => {
 
   test('Find and replace strings with same length', () => {
     expect(
-      findAndReplacePreservingCase('toto', 'Toto is a good programmer', 'titi'),
+      findAndReplacePreservingCase(
+        'toto',
+        'Toto is a good programmer',
+        'titi'
+        ),
     ).toBe('Titi is a good programmer')
     expect(
       findAndReplacePreservingCase(
