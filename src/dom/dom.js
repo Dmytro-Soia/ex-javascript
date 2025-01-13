@@ -8,7 +8,9 @@
  * You need to change the color of the html element with the id "change-my-color"
  */
 export function getElementFromDomAndChangeColorToRed() {
-  // Write your code here
+  /** @type {HTMLElement} */
+  const redCSS = document.querySelector('#change-my-color');
+  redCSS.style.color = "red"
 }
 
 /**
@@ -16,7 +18,13 @@ export function getElementFromDomAndChangeColorToRed() {
  * The first paragraph must contain "Bonjour", the second "Toto"
  */
 export function addElementsInDOM() {
-  // Write your code here
+  const newParagraph = document.querySelector("#add-your-elements-in-this-element")
+  const firstp = document.createElement("p")
+  firstp.innerText = "Bonjour"
+  const secondp = document.createElement("p")
+  secondp.innerText = "Toto"
+  newParagraph.appendChild(firstp)
+  newParagraph.appendChild(secondp)
 }
 
 /**
@@ -26,5 +34,17 @@ export function addElementsInDOM() {
  * @param {array<{name: string, color: string}>} listElements
  */
 export function addAListInDomFromAnArrayOfObjects(listElements) {
-  // Write your code here
+  const main = document.querySelector("#add-list-here")
+  const el = {}
+  const ul = document.createElement("ul")
+  main.appendChild(ul)
+  listElements.forEach((element) => {
+    el[element.name] = element.color
+  })
+  for (const [key, value] of Object.entries(el)) {
+    const ii = document.createElement("li")
+    ii.style.backgroundColor = `${value}`
+    ii.innerText = `${key}`
+    ul.appendChild(ii)
+  }
 }
