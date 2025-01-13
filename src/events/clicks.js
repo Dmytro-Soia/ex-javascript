@@ -6,7 +6,7 @@
 export function reactToClickEvent() {
   const button = document.querySelector("#click-me")
   function addAlert() {
-    //alert("Button clicked")
+    alert("Button clicked")
   }
   button.addEventListener("click", addAlert)
 }
