@@ -4,16 +4,20 @@
  * You need to display coordinates as follows : "x: 232, y: 332
  */
 export function mouseMovements() {
-  // Write your code here
+  let  paragraph = document.querySelector("#mouse-coordinates")
+  document.addEventListener("mousemove", movement)
+    function movement(e) {
+      paragraph.innerText = `
+    x: ${e.screenX}, y: ${e.screenY}`;
 }
-
+  }
 const randomRGB = () => {
   const o = Math.round
   const r = Math.random
   const s = 255
   return `rgba(${o(r() * s)},${o(r() * s)},${o(r() * s)})`
 }
-let enteringColor = ''
+let enteringColor = randomRGB()
 
 /**
  * On the page, you have an input with the id "focus-me".
@@ -25,7 +29,25 @@ let enteringColor = ''
  * Third, when you loose focus of the field, you need to reset the border color to the default one.
  */
 export function hoverFocusAndBlur() {
-  // Write your code here
+  const input = document.querySelector("#focus-me")
+  const papadiv = input.parentElement
+  const perviy = papadiv.children[1]
+  const vtoroy = papadiv.lastElementChild
+  input.addEventListener("mouseover", (event) => {
+    perviy.innerText = 'Yes, you hover me !'
+    vtoroy.innerText = 'Yes, you hover me !'
+  })
+  input.addEventListener("mouseout", (event) => {
+    perviy.innerText = 'Focus me:'
+    vtoroy.innerText = 'A second label ! just for fun'
+  })
+
+  input.addEventListener("focus", (event) => {
+    event.target.style.borderColor = randomRGB()
+  })
+  input.addEventListener("blur", (event) => {
+    event.target.style.borderColor = enteringColor
+  })
 }
 
 /**
@@ -37,5 +59,8 @@ export function hoverFocusAndBlur() {
  * Take the opportunity to also apply this colour to the text of the 2 input labels.
  */
 export function changesOnInputEvents() {
-  // Write your code here
+  const input = document.querySelector("#focus-me")
+  input.addEventListener("input", (e) => {
+    input.labels.forEach(label => {label.style.color = enteringColor});
+    })
 }
