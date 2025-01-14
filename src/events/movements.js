@@ -17,7 +17,7 @@ const randomRGB = () => {
   const s = 255
   return `rgba(${o(r() * s)},${o(r() * s)},${o(r() * s)})`
 }
-let enteringColor = randomRGB()
+let enteringColor = '#6495ed'
 
 /**
  * On the page, you have an input with the id "focus-me".
@@ -43,7 +43,8 @@ export function hoverFocusAndBlur() {
   })
 
   input.addEventListener("focus", (event) => {
-    event.target.style.borderColor = randomRGB()
+    previousColor = event.target.style.borderColor = randomRGB()
+
   })
   input.addEventListener("blur", (event) => {
     event.target.style.borderColor = enteringColor
@@ -61,6 +62,7 @@ export function hoverFocusAndBlur() {
 export function changesOnInputEvents() {
   const input = document.querySelector("#focus-me")
   input.addEventListener("input", (e) => {
-    input.labels.forEach(label => {label.style.color = enteringColor});
+    enteringColor = randomRGB()
+      input.labels.forEach(label => {label.style.color = enteringColor});
     })
 }
